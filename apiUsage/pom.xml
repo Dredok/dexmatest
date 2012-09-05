@@ -5,4 +5,17 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>apiUsage</name>
   <description>apiUsage</description>
+	<dependencies>
+		 <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
+		<dependency>
+	    <groupId>com.restfuse</groupId>
+	    <artifactId>com.eclipsesource.restfuse</artifactId>
+	    <version>1.0.0</version>
+    </dependency>
+	</dependencies>
 </project>
