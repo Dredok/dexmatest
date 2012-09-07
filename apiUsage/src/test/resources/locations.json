@@ -1,0 +1,22 @@
+[   {
+        "info": {"wintertemp": 15.0, "activity": "SMALL-STORE-FOOD", "surface": 1250.0, "summertemp": 18.0}
+      , "reference_devices": {"otemp": 10904, "main": 10900, "lighting": 10901, "fridge": 10902, "hvac": 10903}
+      , "address": {"latitude": 37.3826, "city": "Sevilla", "longitude": -5.99629}
+      , "id": 10846
+      , "name": "Supermercado Sevilla"
+    }
+  , { 
+      "info": {"wintertemp": 15.0, "activity": "SMALL-STORE-FOOD", "surface": 1230.0, "summertemp": 18.0}
+    , "reference_devices": {"otemp": 10849, "main": 10695, "lighting": 10697, "fridge": 10698, "hvac": 10756}
+    , "address": {"latitude": 41.3867, "city": "Barcelona", "street": "Pla\u00e7a catalunya", "longitude": 2.17}
+    , "id": 10843
+    , "name": "Supermercado Barcelona"
+    }
+  , {
+      "info": {"wintertemp": 15.0, "activity": "SMALL-STORE-FOOD", "surface": 3382.0, "summertemp": 18.0}
+    , "reference_devices": {"otemp": 10899, "main": 10895, "lighting": 10896, "fridge": 10897, "hvac": 10898}
+    , "address": {"latitude": 43.257, "city": "Bilbao", "longitude": -2.92344}
+    , "id": 10845
+    , "name": "Supermercado Bilbao"
+    }
+]
