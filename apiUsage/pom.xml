@@ -13,9 +13,9 @@
       <scope>test</scope>
     </dependency>
 		<dependency>
-	    <groupId>com.restfuse</groupId>
-	    <artifactId>com.eclipsesource.restfuse</artifactId>
-	    <version>1.0.0</version>
+      <groupId>com.restfuse</groupId>
+			<artifactId>com.eclipsesource.restfuse</artifactId>
+			<version>1.0.0</version>
     </dependency>
 		<!--  Gson: Java to Json conversion -->
     <dependency>
