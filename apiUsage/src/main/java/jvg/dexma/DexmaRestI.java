@@ -30,8 +30,7 @@ public interface DexmaRestI {
           start=YYYYMMDDHHMMSS
           end=YYYYMMDDHHMMSS
           period=HOUR | DAY | WEEK | MONTH | YEAR
-          grouped=true | false
-          Energy type can be: ELECTRICAL, GAS, WATER
+          grouped=true | false          
    */  
   public Cost getCost(Long deviceId, EnergyType energyType) throws IOException;
 }
