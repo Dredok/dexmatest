@@ -1,5 +1,6 @@
 package jvg.dexma;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DexmaRestI {
@@ -13,7 +14,7 @@ public interface DexmaRestI {
   public List<Device> getDevicesByLocation(Long locationId);
   
   /* locations calls*/
-  public List<Location> getAllLocations();
+  public List<Location> getAllLocations() throws IOException;
   public Location getLocation(Long id);
   public List<Location> getLocationsByDeployment(Long deploymentId);
   

@@ -3,6 +3,7 @@ package jvg.dexma;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,15 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 
 public class LocationJsonHelper {
+  
+  public List<Location> readJsonStream(String in) throws IOException {
+    JsonReader reader = new JsonReader(new StringReader(in));
+    try {
+      return readLocationArray(reader);
+    } finally {
+      reader.close();
+    }    
+  }
   
   public List<Location> readJsonStream(InputStream in) throws IOException {
     JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));

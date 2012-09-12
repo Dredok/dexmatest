@@ -1,6 +1,12 @@
 package jvg.dexma;
 
 import java.util.List;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.apache.commons.io.IOUtils;
 
 
 /** Facade implementing all the http/json dexma v2 API
@@ -9,6 +15,46 @@ import java.util.List;
  */
 
 public class DexmaRestFacade implements DexmaRestI {
+  
+  //token for authenticate the API calls
+  private String token;
+  
+  //parsing the JSON for location calls
+  private LocationJsonHelper locationJsonHelper;
+  
+  private final String dexmaApiURL = "http://api.dexcell.com/";
+  
+  public DexmaRestFacade (String token) {
+    this.token = token;
+  }  
+  
+  public String doGetRequest (String operation) {    
+    try {      
+      URL url = new URL(dexmaApiURL+operation);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("GET");
+      conn.setRequestProperty("Accept", "application/json");
+      conn.addRequestProperty("x-dexcell-token", token);
+   
+      if (conn.getResponseCode() != 200) {
+        throw new RuntimeException("Failed : HTTP error code : "
+            + conn.getResponseCode());
+      }     
+       
+      String response = IOUtils.toString(conn.getInputStream(), "UTF-8");
+      conn.disconnect();      
+      return response;
+   
+      } catch (MalformedURLException e) {
+        //Shouldn't get here!   
+        e.printStackTrace();
+        throw new RuntimeException("Review code at operation: '"+operation+"'");
+        
+      } catch (IOException e) {
+        e.printStackTrace();
+        throw new RuntimeException("IOException: '"+e.getMessage()+"'");
+      }   
+  }  
 
   @Override
   public List<Deployment> getAllDeployments() {
@@ -41,14 +87,14 @@ public class DexmaRestFacade implements DexmaRestI {
   }
 
   @Override
-  public List<Location> getAllLocations() {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Location> getAllLocations() throws IOException {
+    String operation = "locations.json";
+    return locationJsonHelper.readJsonStream(doGetRequest(operation));    
   }
 
   @Override
-  public Location getLocation(Long id) {
-    // TODO Auto-generated method stub
+  public Location getLocation(Long id) { 
+    
     return null;
   }
 
@@ -71,3 +117,4 @@ public class DexmaRestFacade implements DexmaRestI {
   }
 
 }
+;
