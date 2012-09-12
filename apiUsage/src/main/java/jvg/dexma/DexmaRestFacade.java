@@ -102,9 +102,10 @@ public class DexmaRestFacade implements DexmaRestI {
   }
 
   @Override
-  public List<Location> getLocationsByDeployment(Long deploymentId) {
+  public List<Location> getLocationsByDeployment(Long deploymentId) throws IOException {
+    String operation ="deployments/"+deploymentId+"/locations.json";
     // TODO Auto-generated method stub
-    return null;
+    return locationJsonHelper.readJsonStream(doGetRequest(operation));    
   }
 
   @Override

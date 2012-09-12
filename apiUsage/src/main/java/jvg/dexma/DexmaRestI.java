@@ -9,21 +9,21 @@ public interface DexmaRestI {
   public Deployment getDeployment(Long id);
   
   /* devices calls*/
-  public List<Device> getAllDevices();
-  public Device getDevice(Long id);
-  public List<Device> getDevicesByLocation(Long locationId);
+  public List<Device> getAllDevices() throws IOException;
+  public Device getDevice(Long id) throws IOException;
+  public List<Device> getDevicesByLocation(Long locationId) throws IOException;
   
   /* locations calls*/
   public List<Location> getAllLocations() throws IOException;
   public Location getLocation(Long id) throws IOException;
-  public List<Location> getLocationsByDeployment(Long deploymentId);
+  public List<Location> getLocationsByDeployment(Long deploymentId) throws IOException;
   
   /* readings calls
    * TODO optional parameters:
           start=YYYYMMDDHHMMSS
           end=YYYYMMDDHHMMSS
    */  
-  public List<Readings> getReadings(Long deviceId, Long parameterId);
+  public List<Readings> getReadings(Long deviceId, Long parameterId) throws IOException;
   
   /* cost calls
    * TODO options:
@@ -33,5 +33,5 @@ public interface DexmaRestI {
           grouped=true | false
           Energy type can be: ELECTRICAL, GAS, WATER
    */  
-  public Cost getCost(Long deviceId, EnergyType energyType);
+  public Cost getCost(Long deviceId, EnergyType energyType) throws IOException;
 }
