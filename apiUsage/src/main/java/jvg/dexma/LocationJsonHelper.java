@@ -40,6 +40,15 @@ public class LocationJsonHelper {
     reader.endArray();
     return locations;
   }
+  
+  public Location readLocation(String in) throws IOException {
+    JsonReader reader = new JsonReader(new StringReader(in));
+    try {
+      return readLocation(reader);
+    } finally {
+      reader.close();
+    }
+  }
 
   /*Fills the locations*/
   public Location readLocation(JsonReader reader) throws IOException {

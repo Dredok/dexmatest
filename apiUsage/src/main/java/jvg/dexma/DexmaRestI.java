@@ -15,7 +15,7 @@ public interface DexmaRestI {
   
   /* locations calls*/
   public List<Location> getAllLocations() throws IOException;
-  public Location getLocation(Long id);
+  public Location getLocation(Long id) throws IOException;
   public List<Location> getLocationsByDeployment(Long deploymentId);
   
   /* readings calls

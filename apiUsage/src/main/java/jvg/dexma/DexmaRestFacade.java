@@ -96,9 +96,9 @@ public class DexmaRestFacade implements DexmaRestI {
   }
 
   @Override
-  public Location getLocation(Long id) { 
-    
-    return null;
+  public Location getLocation(Long id) throws IOException {
+    String operation = "locations/"+id+".json";
+    return locationJsonHelper.readLocation(doGetRequest(operation));    
   }
 
   @Override

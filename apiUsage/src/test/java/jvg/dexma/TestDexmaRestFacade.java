@@ -51,4 +51,10 @@ public class TestDexmaRestFacade {
       assertEquals(notFound,false);
     }
   }
+  @Test
+  public void testGetLocation() throws IOException {
+    Location loc = dexmaRestFacade.getLocation(10845L);
+    assertNotNull(loc);
+    assertEquals(loc.getName(),"Supermercado Bilbao");    
+  }
 }
