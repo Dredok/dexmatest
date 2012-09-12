@@ -1,7 +1,6 @@
 
 package jvg.dexma;
 
-import java.util.List;
 
 public class Info{
    	private String activity;

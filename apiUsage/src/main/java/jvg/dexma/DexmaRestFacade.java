@@ -21,6 +21,7 @@ public class DexmaRestFacade implements DexmaRestI {
   
   //parsing the JSON for location calls
   private LocationJsonHelper locationJsonHelper;
+  private DeploymentJsonHelper deploymentJsonHelper;
   
   private final String dexmaApiURL = "http://api.dexcell.com/";
   
@@ -60,9 +61,9 @@ public class DexmaRestFacade implements DexmaRestI {
   }  
 
   @Override
-  public List<Deployment> getAllDeployments() {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Deployment> getAllDeployments() throws IOException {
+    String operation = "deployments.json";
+    return deploymentJsonHelper.readJsonStream(doGetRequest(operation));
   }
 
   @Override

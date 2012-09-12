@@ -6,6 +6,15 @@ public class Deployment{
     private Number id;
     private String name;
 
+  public Deployment(String account_name, String customer_name, Number id,
+        String name) {
+      super();
+      this.account_name = account_name;
+      this.customer_name = customer_name;
+      this.id = id;
+      this.name = name;
+  }
+  
   public String getAccount_name(){
     return this.account_name;
   }

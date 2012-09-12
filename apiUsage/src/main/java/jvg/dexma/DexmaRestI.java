@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface DexmaRestI {
   /* deployments calls*/
-  public List<Deployment> getAllDeployments();
-  public Deployment getDeployment(Long id);
+  public List<Deployment> getAllDeployments() throws IOException;
+  public Deployment getDeployment(Long id) throws IOException;
   
   /* devices calls*/
   public List<Device> getAllDevices() throws IOException;
