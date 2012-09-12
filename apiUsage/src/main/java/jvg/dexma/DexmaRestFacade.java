@@ -28,6 +28,7 @@ public class DexmaRestFacade implements DexmaRestI {
   public DexmaRestFacade (String token) {
     this.token = token;
     locationJsonHelper = new LocationJsonHelper();
+    deploymentJsonHelper = new DeploymentJsonHelper();
   }  
   
   public String doGetRequest (String operation) {    

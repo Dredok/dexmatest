@@ -7,28 +7,46 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.*;
 
 public class TestDexmaRestFacade {
-  static String jsonFile = "./src/test/resources/locations.json";
+  static String locationsJsonFile = "./src/test/resources/locations.json";
+  static String deploymentsJsonFile = "./src/test/resources/deployments.json";
   static List<Location> locations;
+  static List<Deployment> deployments;
   static DexmaRestFacade dexmaRestFacade;
   
   /** 
    * load a file which contains all the locations when calling the REST webservice
    */
   @BeforeClass
-  public static void testReadJsonStream() {    
+  public static void loadLocations() {    
     LocationJsonHelper jsonHelper = new LocationJsonHelper();
     try {
-      String curDir = System.getProperty("user.dir");
-      System.out.println("CurDir: "+curDir);
-      FileInputStream in = new FileInputStream(jsonFile);
+      String curDir = System.getProperty("user.dir");      
+      FileInputStream in = new FileInputStream(locationsJsonFile);
       locations = jsonHelper.readJsonStream(in);      
     } catch (IOException e) {
       fail("Test not properly configured. IOException: "+e);      
     }    
   }
+  
+  /** 
+   * load a file which contains all the deployments when calling the REST webservice
+   */
+  @BeforeClass
+  public static void loadDeployments() {    
+    DeploymentJsonHelper jsonHelper = new DeploymentJsonHelper();
+    try {
+      String curDir = System.getProperty("user.dir");      
+      FileInputStream in = new FileInputStream(deploymentsJsonFile);
+      deployments = jsonHelper.readJsonStream(IOUtils.toString(in,"UTF-8"));      
+    } catch (IOException e) {
+      fail("Test not properly configured. IOException: "+e);      
+    }    
+  }
+  
   /**
    * token initialization. All the tests will be based on the information which
    * this token has access to 
@@ -54,7 +72,6 @@ public class TestDexmaRestFacade {
        */      
       Iterator<Location> itLocal = locations.iterator();
       boolean notFound = true;      
-      int i=0;
       while (itLocal.hasNext() && notFound) {        
         notFound = !loc.equals(itLocal.next());
       }
@@ -91,9 +108,31 @@ public class TestDexmaRestFacade {
        */      
       Iterator<Location> itLocal = locations.iterator();
       boolean notFound = true;      
-      int i=0;
       while (itLocal.hasNext() && notFound) {        
         notFound = !loc.equals(itLocal.next());
+      }
+      assertEquals(notFound,false);
+    }
+  }
+  /** 
+   * this token has 1 deployment and the local file contains it
+   * @throws IOException
+   */
+  @Test
+  public void testGetAllDeployments() throws IOException {
+    List<Deployment> remoteDeployments = dexmaRestFacade.getAllDeployments();     
+    assertEquals(1,remoteDeployments.size());
+    Iterator<Deployment> itRemote = remoteDeployments.iterator();    
+    while (itRemote.hasNext()) {
+      Deployment dep = itRemote.next();
+      /*iteration over the local list. This operation is slow (O(N2)) but for test purposes
+       * is more than enough - just 1 deployment!-
+       */      
+      Iterator<Deployment> itLocal = deployments.iterator();
+      boolean notFound = true;     
+      
+      while (itLocal.hasNext() && notFound) {        
+        notFound = !dep.equals(itLocal.next());
       }
       assertEquals(notFound,false);
     }
