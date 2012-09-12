@@ -24,7 +24,6 @@ public class TestDexmaRestFacade {
   public static void loadLocations() {    
     LocationJsonHelper jsonHelper = new LocationJsonHelper();
     try {
-      String curDir = System.getProperty("user.dir");      
       FileInputStream in = new FileInputStream(locationsJsonFile);
       locations = jsonHelper.readJsonStream(in);      
     } catch (IOException e) {
@@ -39,7 +38,6 @@ public class TestDexmaRestFacade {
   public static void loadDeployments() {    
     DeploymentJsonHelper jsonHelper = new DeploymentJsonHelper();
     try {
-      String curDir = System.getProperty("user.dir");      
       FileInputStream in = new FileInputStream(deploymentsJsonFile);
       deployments = jsonHelper.readJsonStream(IOUtils.toString(in,"UTF-8"));      
     } catch (IOException e) {
