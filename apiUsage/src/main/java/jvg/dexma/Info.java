@@ -41,4 +41,36 @@ public class Info{
 	public void setWintertemp(Number wintertemp){
 		this.wintertemp = wintertemp;
 	}
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Info other = (Info) obj;
+    if (activity == null) {
+      if (other.activity != null)
+        return false;
+    } else if (!activity.equals(other.activity))
+      return false;
+    if (summertemp == null) {
+      if (other.summertemp != null)
+        return false;
+    } else if (!summertemp.equals(other.summertemp))
+      return false;
+    if (surface == null) {
+      if (other.surface != null)
+        return false;
+    } else if (!surface.equals(other.surface))
+      return false;
+    if (wintertemp == null) {
+      if (other.wintertemp != null)
+        return false;
+    } else if (!wintertemp.equals(other.wintertemp))
+      return false;
+    return true;
+  }
 }

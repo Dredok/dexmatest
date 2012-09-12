@@ -38,4 +38,35 @@ public class Address{
   public void setStreet(String street) {
     this.street = street;
   }
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Address other = (Address) obj;
+    if (city == null) {
+      if (other.city != null)
+        return false;
+    } else if (!city.equals(other.city))
+      return false;
+    if (latitude == null) {
+      if (other.latitude != null)
+        return false;
+    } else if (!latitude.equals(other.latitude))
+      return false;
+    if (longitude == null) {
+      if (other.longitude != null)
+        return false;
+    } else if (!longitude.equals(other.longitude))
+      return false;
+    if (street == null) {
+      if (other.street != null)
+        return false;
+    } else if (!street.equals(other.street))
+      return false;
+    return true;
+  }
 }

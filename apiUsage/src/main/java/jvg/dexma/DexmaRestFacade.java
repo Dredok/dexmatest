@@ -26,6 +26,7 @@ public class DexmaRestFacade implements DexmaRestI {
   
   public DexmaRestFacade (String token) {
     this.token = token;
+    locationJsonHelper = new LocationJsonHelper();
   }  
   
   public String doGetRequest (String operation) {    
@@ -42,6 +43,8 @@ public class DexmaRestFacade implements DexmaRestI {
       }     
        
       String response = IOUtils.toString(conn.getInputStream(), "UTF-8");
+      //DEBUG
+      //System.out.println("Response for operation "+operation+" : "+response);
       conn.disconnect();      
       return response;
    

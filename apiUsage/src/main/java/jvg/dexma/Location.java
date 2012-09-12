@@ -48,5 +48,42 @@ public class Location{
 	}
 	public void setReference_devices(Reference_devices reference_devices){
 		this.reference_devices = reference_devices;
-	}
+	}  
+  
+	@Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Location other = (Location) obj;
+    if (address == null) {
+      if (other.address != null)
+        return false;
+    } else if (!address.equals(other.address))
+      return false;
+    if (id == null) {
+      if (other.id != null)
+        return false;
+    } else if (!id.equals(other.id))
+      return false;
+    if (info == null) {
+      if (other.info != null)
+        return false;
+    } else if (!info.equals(other.info))
+      return false;
+    if (name == null) {
+      if (other.name != null)
+        return false;
+    } else if (!name.equals(other.name))
+      return false;
+    if (reference_devices == null) {
+      if (other.reference_devices != null)
+        return false;
+    } else if (!reference_devices.equals(other.reference_devices))
+      return false;
+    return true;
+  }
 }
