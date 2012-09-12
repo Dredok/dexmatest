@@ -146,6 +146,3 @@ public class LocationJsonHelper {
     return new Reference_devices(fridge, hvac, lightning, main, otemp);
   }
 }
-  
-
-
