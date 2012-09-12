@@ -22,6 +22,7 @@ public class DexmaRestFacade implements DexmaRestI {
   //parsing the JSON for location calls
   private LocationJsonHelper locationJsonHelper;
   private DeploymentJsonHelper deploymentJsonHelper;
+  private DeviceJsonHelper deviceJsonHelper;
   
   private final String dexmaApiURL = "http://api.dexcell.com/";
   
@@ -29,6 +30,7 @@ public class DexmaRestFacade implements DexmaRestI {
     this.token = token;
     locationJsonHelper = new LocationJsonHelper();
     deploymentJsonHelper = new DeploymentJsonHelper();
+    deviceJsonHelper = new DeviceJsonHelper();
   }  
   
   public String doGetRequest (String operation) {    
@@ -74,21 +76,21 @@ public class DexmaRestFacade implements DexmaRestI {
   }
 
   @Override
-  public List<Device> getAllDevices() {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Device> getAllDevices() throws IOException {
+    String operation = "devices.json";
+    return deviceJsonHelper.readJsonStream(doGetRequest(operation));
   }
 
   @Override
-  public Device getDevice(Long id) {
-    // TODO Auto-generated method stub
-    return null;
+  public Device getDevice(Long id) throws IOException {
+    String operation = "devices/"+id+".json";
+    return deviceJsonHelper.readDevice(doGetRequest(operation));
   }
 
   @Override
-  public List<Device> getDevicesByLocation(Long locationId) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Device> getDevicesByLocation(Long locationId) throws IOException {
+    String operation = "locations/"+locationId+"/devices.json";
+    return deviceJsonHelper.readJsonStream(doGetRequest(operation));
   }
 
   @Override

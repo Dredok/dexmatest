@@ -16,9 +16,7 @@ public class TestLocationJsonHelper {
   @BeforeClass
   public static void testReadJsonStream() {    
     LocationJsonHelper jsonHelper = new LocationJsonHelper();
-    try {
-      String curDir = System.getProperty("user.dir");
-      System.out.println("CurDir: "+curDir);
+    try {      
       FileInputStream in = new FileInputStream(jsonFile);
       locations = jsonHelper.readJsonStream(in);      
     } catch (IOException e) {

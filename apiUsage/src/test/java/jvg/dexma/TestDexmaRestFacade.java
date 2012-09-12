@@ -146,4 +146,36 @@ public class TestDexmaRestFacade {
     assertNotNull(dep);
     assertEquals(dep.getName(),"DemoSupermercados");    
   }
+  
+  /**
+   * 33 is the number of devices for this token
+   * @throws IOException
+   */
+  @Test
+  public void testGetAllDevices() throws IOException {
+    List<Device> remoteDevices = dexmaRestFacade.getAllDevices();
+    assertNotNull(remoteDevices);
+    assertEquals(33,remoteDevices.size());    
+  }
+  
+  /**
+   * 10896 is an existent device for this token
+   * @throws IOException
+   */
+  @Test
+  public void testGetDevice() throws IOException {
+    Device device = dexmaRestFacade.getDevice(10896L);
+    assertNotNull(device);
+    assertEquals(device.getName(),"Iluminación");
+  }
+  /**
+   * 10845 is a Location with 7 devices for this token
+   * @throws IOException
+   */
+  @Test
+  public void testGetDeviceByLocation() throws IOException {
+    List<Device> remoteDevices = dexmaRestFacade.getDevicesByLocation(10845L);
+    assertNotNull(remoteDevices);
+    assertEquals(7,remoteDevices.size());    
+  }
 }

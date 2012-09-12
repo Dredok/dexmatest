@@ -17,9 +17,7 @@ public class TestDeploymentJsonHelper {
   @BeforeClass
   public static void testReadJsonStream() {    
     DeploymentJsonHelper jsonHelper = new DeploymentJsonHelper();
-    try {
-      String curDir = System.getProperty("user.dir");
-      System.out.println("CurDir: "+curDir);
+    try {      
       FileInputStream in = new FileInputStream(jsonFile);
       deployments = jsonHelper.readJsonStream(IOUtils.toString(in,"UTF-8"));      
     } catch (IOException e) {

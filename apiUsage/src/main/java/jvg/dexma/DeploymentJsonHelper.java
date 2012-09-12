@@ -38,7 +38,7 @@ public class DeploymentJsonHelper {
     }
   }
 
-  /*Fills the locations*/
+  /*Fills the deployments*/
   public Deployment readDeployment(JsonReader reader) throws IOException {
     long id = -1;    
     String name = null;
