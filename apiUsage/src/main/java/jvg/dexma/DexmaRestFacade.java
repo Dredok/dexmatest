@@ -23,6 +23,8 @@ public class DexmaRestFacade implements DexmaRestI {
   private LocationJsonHelper locationJsonHelper;
   private DeploymentJsonHelper deploymentJsonHelper;
   private DeviceJsonHelper deviceJsonHelper;
+  private ReadingsJsonHelper readingsJsonHelper;
+  private CostJsonHelper costJsonHelper;
   
   private final String dexmaApiURL = "http://api.dexcell.com/";
   
@@ -31,6 +33,8 @@ public class DexmaRestFacade implements DexmaRestI {
     locationJsonHelper = new LocationJsonHelper();
     deploymentJsonHelper = new DeploymentJsonHelper();
     deviceJsonHelper = new DeviceJsonHelper();
+    readingsJsonHelper = new ReadingsJsonHelper();
+    costJsonHelper = new CostJsonHelper();
   }  
   
   public String doGetRequest (String operation) {    
@@ -108,21 +112,18 @@ public class DexmaRestFacade implements DexmaRestI {
   @Override
   public List<Location> getLocationsByDeployment(Long deploymentId) throws IOException {
     String operation ="deployments/"+deploymentId+"/locations.json";
-    // TODO Auto-generated method stub
     return locationJsonHelper.readJsonStream(doGetRequest(operation));    
   }
 
   @Override
-  public List<Readings> getReadings(Long deviceId, Long parameterId) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Readings> getReadings(Long deviceId, Long parameterId) throws IOException {
+    String operation ="devices/"+deviceId+"/readings/"+parameterId+".json";    
+    return readingsJsonHelper.readJsonStream(doGetRequest(operation));
   }
 
   @Override
-  public Cost getCost(Long deviceId, EnergyType energyType) {
-    // TODO Auto-generated method stub
-    return null;
+  public Cost getCost(Long deviceId, EnergyType energyType) throws IOException {  
+    String operation = "devices/"+deviceId+"/"+energyType+"/cost.json";    
+    return costJsonHelper.readCost(doGetRequest(operation));    
   }
-
 }
-;

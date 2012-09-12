@@ -146,6 +146,10 @@ public class TestDexmaRestFacade {
     assertNotNull(dep);
     assertEquals(dep.getName(),"DemoSupermercados");    
   }
+  /**TODO
+   * Devices tests should be more elaborated...
+   * Readings and cost tests should also be more elaborated
+   */
   
   /**
    * 33 is the number of devices for this token
@@ -177,5 +181,30 @@ public class TestDexmaRestFacade {
     List<Device> remoteDevices = dexmaRestFacade.getDevicesByLocation(10845L);
     assertNotNull(remoteDevices);
     assertEquals(7,remoteDevices.size());    
+  }
+  /**
+   * 10900 is a valid device for this token
+   * 401 is a valid parameter for this device and token
+   * 93 total readings
+   * @throws IOException
+   */
+  @Test
+  public void testGetReadings() throws IOException {
+    List<Readings> remoteReadings = dexmaRestFacade.getReadings(10900L, 401L);
+    assertNotNull(remoteReadings);
+    assertEquals(93,remoteReadings.size());        
+  }
+  /**
+   * 10900 is a valid device for this token
+   * ELECTRICAL is a valid energyType for this device and token
+   * 3 periods and 24 readings
+   * @throws IOException
+   */
+  @Test
+  public void testGetCost() throws IOException {
+    Cost remoteCost = dexmaRestFacade.getCost(10900L, EnergyType.ELECTRICAL);
+    assertNotNull(remoteCost);
+    assertEquals(3,remoteCost.getPeriods().size());
+    assertEquals(24,remoteCost.getReadings().size());
   }
 }

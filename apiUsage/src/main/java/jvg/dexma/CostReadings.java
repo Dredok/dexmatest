@@ -6,6 +6,13 @@ public class CostReadings{
     private Number period;
     private String ts;
 
+  public CostReadings(Number cost, Number energy, Number period, String ts) {
+      super();
+      this.cost = cost;
+      this.energy = energy;
+      this.period = period;
+      this.ts = ts;
+    }
   public Number getCost(){
     return this.cost;
   }
@@ -29,5 +36,36 @@ public class CostReadings{
   }
   public void setTs(String ts){
     this.ts = ts;
+  }
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    CostReadings other = (CostReadings) obj;
+    if (cost == null) {
+      if (other.cost != null)
+        return false;
+    } else if (!cost.equals(other.cost))
+      return false;
+    if (energy == null) {
+      if (other.energy != null)
+        return false;
+    } else if (!energy.equals(other.energy))
+      return false;
+    if (period == null) {
+      if (other.period != null)
+        return false;
+    } else if (!period.equals(other.period))
+      return false;
+    if (ts == null) {
+      if (other.ts != null)
+        return false;
+    } else if (!ts.equals(other.ts))
+      return false;
+    return true;
   }
 }
