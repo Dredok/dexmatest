@@ -135,4 +135,15 @@ public class TestDexmaRestFacade {
       assertEquals(notFound,false);
     }
   }
+  /**
+   * 265 corresponds to DemoSupermercados in this token
+   * TODO. There is a bug on the current API and getDeployment doesnt work properly, so this test will be ignored
+   * @throws IOException
+   */
+  @Ignore @Test
+  public void testGetDeployment() throws IOException {    
+    Deployment dep = dexmaRestFacade.getDeployment(265L);
+    assertNotNull(dep);
+    assertEquals(dep.getName(),"DemoSupermercados");    
+  }
 }

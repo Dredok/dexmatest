@@ -68,9 +68,9 @@ public class DexmaRestFacade implements DexmaRestI {
   }
 
   @Override
-  public Deployment getDeployment(Long id) {
-    // TODO Auto-generated method stub
-    return null;
+  public Deployment getDeployment(Long id) throws IOException {
+    String operation = "deployments/"+id+".json";
+    return deploymentJsonHelper.readDeployment(doGetRequest(operation));    
   }
 
   @Override
